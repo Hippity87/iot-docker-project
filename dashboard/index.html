@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>IoT Dashboard</h1>
+    <p>Welcome to the IoT Dashboard. Here you can monitor and control the IoT device.</p>
+    <div id="data-display">
+      <p>Min Temperature: <span id="minTemp">Loading...</span></p>
+      <p>Max Temperature: <span id="maxTemp">Loading...</span></p>
+      <p>Current Temperature: <span id="currentTemp">Loading...</span></p>
+    </div>
+    <form id="settings-form">
+      <label for="min">Set Min Temperature:</label>
+      <input type="text" id="min" name="min" placeholder="Enter min temperature">
+      <label for="max">Set Max Temperature:</label>
+      <input type="text" id="max" name="max" placeholder="Enter max temperature">
+      <button type="submit">Update</button>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
