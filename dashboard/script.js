@@ -10,7 +10,7 @@ async function fetchData() {
       // Hae sensori-data
       const responseData = await fetch('/api/data');
       const data = await responseData.json();
-      document.getElementById('currentTemp').innerText = data.temperature || 'N/A';
+      document.getElementById('sensorTemp').innerText = data.temperature || 'N/A';
       document.getElementById('currentHumidity').innerText = data.humidity || 'N/A';
     } catch (error) {
       console.error('Error fetching data:', error);
