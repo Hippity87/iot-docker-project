@@ -1,0 +1,17 @@
+# Yleiset tiedostot
+*.log
+*.tmp
+*.bak
+
+# Docker-tiedostot
+docker-compose.override.yml
+docker-compose.*.yml
+.dockerignore
+
+# Ympäristömuuttujat
+.env
+.env.*
+
+# NPM- ja node_modules-tiedostot (jos käytössä)
+node_modules/
+npm-debug.log*
