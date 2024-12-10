@@ -10,11 +10,22 @@
   <div class="container">
     <h1>IoT Dashboard</h1>
     <p>Welcome to the IoT Dashboard. Here you can monitor and control the IoT device.</p>
+    
+    <!-- Asetukset -->
     <div id="data-display">
+      <h2>Settings</h2>
       <p>Min Temperature: <span id="minTemp">Loading...</span></p>
       <p>Max Temperature: <span id="maxTemp">Loading...</span></p>
-      <p>Current Temperature: <span id="currentTemp">Loading...</span></p>
     </div>
+    
+    <!-- Sensoridata -->
+    <div id="sensor-data">
+      <h2>Sensor Data</h2>
+      <p>Temperature: <span id="sensorTemp">Loading...</span> °C</p>
+      <p>Humidity: <span id="currentHumidity">Loading...</span> %</p>
+    </div>
+    
+    <!-- Lomake asetusten päivittämiseen -->
     <form id="settings-form">
       <label for="min">Set Min Temperature:</label>
       <input type="text" id="min" name="min" placeholder="Enter min temperature">
@@ -23,6 +34,7 @@
       <button type="submit">Update</button>
     </form>
   </div>
+  
   <script src="script.js"></script>
 </body>
 </html>

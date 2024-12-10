@@ -1,49 +1,47 @@
 // Hakee tiedot palvelimelta ja päivittää ne dashboardille
 async function fetchData() {
     try {
-        const response = await fetch('/api/settings'); // Käytä oikeaa reittiä
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-
-        document.getElementById('minTemp').innerText = data.min || 'N/A';
-        document.getElementById('maxTemp').innerText = data.max || 'N/A';
-        document.getElementById('currentTemp').innerText = 'N/A'; // Lisää myöhemmin "currentTemperature"
+      // Hae asetukset
+      const responseSettings = await fetch('/api/settings');
+      const settings = await responseSettings.json();
+      document.getElementById('minTemp').innerText = settings.min || 'N/A';
+      document.getElementById('maxTemp').innerText = settings.max || 'N/A';
+  
+      // Hae sensori-data
+      const responseData = await fetch('/api/data');
+      const data = await responseData.json();
+      document.getElementById('currentTemp').innerText = data.temperature || 'N/A';
+      document.getElementById('currentHumidity').innerText = data.humidity || 'N/A';
     } catch (error) {
-        console.error('Error fetching data:', error);
+      console.error('Error fetching data:', error);
     }
-}
-
-
-// Lähettää lomakkeen tiedot taustalla ilman sivun uudelleenlatausta
-document.getElementById('settings-form').addEventListener('submit', async (event) => {
-    event.preventDefault(); // Estää oletustoiminnan (sivun uudelleenlataus)
-
-    // Hae syötteet lomakkeesta
+  }
+  
+  // Lähettää lomakkeen tiedot taustalla ilman sivun uudelleenlatausta
+  document.getElementById('settings-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+  
     const min = document.getElementById('min').value;
     const max = document.getElementById('max').value;
-
+  
     try {
-        // Lähetä POST-pyyntö JSON-tiedoilla
-        const response = await fetch('/api/settings', {
-            method: 'POST', // Käytä POST-metodia
-            headers: {
-                'Content-Type': 'application/json', // Aseta Content-Type JSON:ksi
-            },
-            body: JSON.stringify({ min, max }), // Lähetä tiedot JSON-muodossa
-        });
-
-        // Tarkista palvelimen vastaus
-        if (response.ok) {
-            alert('Settings updated successfully!');
-            fetchData(); // Päivitä dashboard uusilla tiedoilla
-        } else {
-            alert('Error updating settings.');
-        }
+      const response = await fetch('/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ min: parseFloat(min), max: parseFloat(max) }),
+      });
+  
+      if (response.ok) {
+        alert('Settings updated successfully!');
+        fetchData(); // Päivitä näyttö uusilla tiedoilla
+      } else {
+        alert('Error updating settings.');
+      }
     } catch (error) {
-        console.error('Error submitting settings:', error);
+      console.error('Error submitting settings:', error);
     }
-});
-
-
-// Lataa tiedot heti sivun latautuessa
-fetchData();
+  });
+  
+  // Lataa tiedot heti sivun latautuessa
+  fetchData();
+  
