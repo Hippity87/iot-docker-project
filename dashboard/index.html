@@ -14,8 +14,8 @@
     <!-- Asetukset -->
     <div id="data-display">
       <h2>Settings</h2>
-      <p>Min Temperature: <span id="minTemp">Loading...</span></p>
-      <p>Max Temperature: <span id="maxTemp">Loading...</span></p>
+      <p>Min Temperature: <span id="minTemp">Loading...</span> °C</p>
+      <p>Max Temperature: <span id="maxTemp">Loading...</span> °C</p>
     </div>
     
     <!-- Sensoridata -->
@@ -28,9 +28,9 @@
     <!-- Lomake asetusten päivittämiseen -->
     <form id="settings-form">
       <label for="min">Set Min Temperature:</label>
-      <input type="text" id="min" name="min" placeholder="Enter min temperature">
+      <input type="number" id="min" name="min" placeholder="Enter min temperature" step="0.1">
       <label for="max">Set Max Temperature:</label>
-      <input type="text" id="max" name="max" placeholder="Enter max temperature">
+      <input type="number" id="max" name="max" placeholder="Enter max temperature" step="0.1">
       <button type="submit">Update</button>
     </form>
   </div>
